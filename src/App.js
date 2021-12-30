@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Latihan extends React.Component {
+  constructor(props) {
+    super(props)
+    this.setState = {
+      count: 0,
+      text: ''
+    }
+  }
+
+  handleButton = () => {
+    this.setState(prev => ({ count: prev.count + 1 }))
+  }
+
+  testMethod() {
+    if (this.setState.count === 5) {
+      this.setState({
+        text: "Selamat anda telah membuat lifecycle class component"
+      })
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <div>
+          <p>Anda telah mengklik {this.setState.count} kali</p>
+        </div>
+        <button onClick={this.handleButton}>Klik</button>
+      </>
+    )
+  }
 }
 
-export default App;
+export default Latihan
