@@ -1,0 +1,24 @@
+.namaTabel th, .namaTabel td{
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.namaTabel{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.namaTabel th{
+    background-color: rgb(125, 226, 43);
+    color: white;
+    padding: 12px;
+}
+
+.namaTabel tr:nth-child(even) {
+    background-color: wheat;
+}
+
+.namaTabel tr:hover {
+    background-color: yellow;
+}

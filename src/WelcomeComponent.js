@@ -1,7 +1,7 @@
 import React from "react";
 
-function Welcome(props) {
-    return <h1>Hallo, {props.name}</h1>
+const Latihan = (props) => {
+    return <h1>Selamat Pagi {props.nama}</h1>
 }
 
-export default Welcome
+export default Latihan
