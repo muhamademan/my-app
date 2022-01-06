@@ -1,85 +1,87 @@
 import React, { useState } from "react";
 import './style.css'
+import Header from "./header/header";
 
-const Latihan = () => {
-  const [namaPeserta, setNamaPeserta] = useState(
-    ['Alan Subagja', 'Alan Sugandi', 'Alan Sundayat']
+const Pelatihan = () => {
+  const [nomorResi, setNomotResi] = useState(
+    ['0908304923', '23042402834', '03248234923', '0302949823048']
   )
-  const [inputNama, setInputNama] = useState('')
+  const [inputResi, setInputResi] = useState('')
   const [currentIndex, setCurrentIndex] = useState(-1)
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    let newData = namaPeserta
-
-    if (currentIndex === -1) {
-      newData = [...namaPeserta, inputNama]
-    } else {
-      newData[currentIndex] = inputNama
-    }
-
-    setNamaPeserta(newData)
-    setInputNama('')
-  }
-
-  const handleChange = (event) => {
-    setInputNama(event.target.value)
-  }
 
   const handleEdit = (event) => {
     let index = parseInt(event.target.value)
-    let editValue = namaPeserta[index]
-    setInputNama(editValue)
+    let btnEdit = nomorResi[index]
+    setInputResi(btnEdit)
     setCurrentIndex(event.target.value)
   }
 
   const handleDelete = (event) => {
     let index = parseInt(event.target.value)
-    let deletedItem = namaPeserta[index]
-    let newData = namaPeserta.filter((e) => {
-      return e !== deletedItem
+    let btnDelete = nomorResi[index]
+    let newData = nomorResi.filter((e) => {
+      return e !== btnDelete
     })
-    console.log(newData)
-    setNamaPeserta(newData)
+    setNomotResi(newData)
+  }
+
+  const handleChange = (event) => {
+    setInputResi(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    let newData = nomorResi
+
+    if (currentIndex === -1) {
+      newData = [...nomorResi, inputResi]
+    } else {
+      newData[currentIndex] = inputResi
+    }
+    setNomotResi(newData)
+    setInputResi('')
   }
 
   return (
     <>
-      <h1>List Nama Peserta Pegajuan Pinjaman CRUD</h1>
-      <table className="namaTabel">
-        <thead>
-          <tr>
-            <th>Nomor</th>
-            <th>Nama Pengaju</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            namaPeserta.map((value, index) => {
-              return (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>{value}</td>
-                  <td>
-                    <button onClick={handleEdit} value={index}>Edit</button>
-                    <button onClick={handleDelete} value={index}>Delete</button>
-                  </td>
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-
-      {/* Form */}
-      <form onSubmit={handleSubmit}>
-        <label>Masukan Nilai : </label>
-        <input type="text" value={inputNama} onChange={handleChange}></input>
-        <button>Simpan Data</button>
-      </form>
+      <body>
+        <Header />
+        <table className="peserta-lomba">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nomor Resi</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              nomorResi.map((value, index) => {
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{value}</td>
+                    <td className="aksi">
+                      <button onClick={handleEdit} value={index}>Edit</button>&nbsp;
+                      <button onClick={handleDelete} value={index}>Delete</button>
+                    </td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+        <div className="card">
+          <h2>Form Inputan</h2>
+          <form onSubmit={handleSubmit}>
+            <label>Masukan Nomor AWb : </label>&nbsp;
+            <input type='text' value={inputResi} onChange={handleChange}></input>&nbsp;
+            <button>Submit</button>
+          </form>
+        </div>
+      </body>
     </>
   )
 }
 
-export default Latihan
+export default Pelatihan
